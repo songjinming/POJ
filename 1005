@@ -1,0 +1,29 @@
+#include<iostream>
+#include<vector>
+#include<math.h>
+using namespace std;
+
+
+
+class r {
+public:
+	float x;
+	float y;
+};
+int main(void) {
+	int n;
+	cin >> n;
+	vector<r>R(n);
+	float year = 0;
+	for (int i = 0 ; i < n; i++) {
+		cin >> R[i].x >> R[i].y;
+	}
+	for (int i = 0; i < n; i++) {
+		year = ((3.14 * (pow(R[i].x , 2) + pow(R[i].y , 2)) / 2 )/50) ;
+		cout << "Property " << i+1 << ": This property will begin eroding in year " << ceil(year) << "." << endl;
+	}
+	cout << "END OF OUTPUT." << endl;
+}
+
+
+
