@@ -1,0 +1,41 @@
+#include<iostream>
+#include<algorithm>
+using namespace std;
+
+void countfrequency(char *in,int *out);
+bool Issame(int* a, int* b);
+
+int main() {
+	char a[105] = { '\0' };
+	char b[105] = { '\0' };
+	int a1[26] = { 0 };
+	int b1[26] = { 0 };
+	cin >> a >> b;
+	countfrequency(a, a1);
+	countfrequency(b, b1);
+	if (Issame(a1, b1) == true) { cout << "YES" << endl; }
+	else if (Issame(a1, b1) == false) { cout << "NO" << endl; }
+	return 0;
+}
+
+
+
+
+void countfrequency(char* in, int* out) {
+	for (int i = 0; *(in + i) != '\0'; i++) {
+		*(out + (*(in + i) - 'A')) += 1;
+	}
+	sort(out, out + 26);
+}
+
+bool Issame(int* a, int* b) {
+	bool Issame = true;
+	for (int i = 0; i < 26; i++) {
+		if (*(a + i) != *(b + i)) {
+			Issame = false;
+			break;
+		}
+	}
+	return Issame;
+}
+//一开始char型用的101个，后来改成105才AC的
