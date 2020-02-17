@@ -1,0 +1,49 @@
+//一开始我也是用的贪心算法，然后看了一下题目后面的讨论，发现不好使
+  然后就还是选择，统计每个单元走廊桌子经过的次数，其中最大的数据即为答案
+  
+
+
+#include<iostream>
+#include<vector>
+using namespace std;
+
+int Max(int arr[]) {
+	int max = 0;
+	for (int i = 0; i < 200; i++) {
+		if (arr[i] > max) {
+			max = arr[i];
+		}
+	}
+	return max;
+}
+
+
+int main() {
+	int n;
+	cin >> n;
+	vector<int>time(n);
+	for (int i = 0; i < n; i++) {
+		int corridor[200] = { 0 };
+		int m;
+		cin >> m;
+		for (int j = 0; j < m; j++) {
+			int begin, end = 0;
+			cin >> begin >> end;
+			int temp = 0;
+			if (begin > end) {
+				temp = begin; begin = end; end = temp;
+			}
+			if (begin % 2 == 1) { begin++; }
+			if (end % 2 == 1) { end++; }
+			for (int k = begin; k <= end; k += 2) {
+				corridor[k / 2]++;
+			}
+		}
+		time[i] = 10*Max(corridor);
+	}
+	for (int i = 0; i < n; i++) {
+		cout << time[i] << endl;
+	}
+	return 0;
+}
+
