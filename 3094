@@ -1,0 +1,31 @@
+#include<iostream>
+#include<memory.h>
+using namespace std;
+
+int getfeatureval(char a);
+
+
+int main(void) {
+	//gets函数返回的字符串包括了换行符和结尾的'\0'。
+	//换行符最长的情况就是"\r\n"两个字节，再加上'\0'
+	//一共是三个字节。亲测，将数组开到255 + 3 = 258字节，AC
+	char str[256] = { '\0' };         
+	while (true) {
+		gets_s(str);
+		int len = strlen(str);
+		if (str[0] == '#') {
+			break;
+		}
+		int sum = 0;
+		for (int i = 0; i < len; i++) {
+			sum += ((i + 1) * getfeatureval(str[i]));
+		}
+		cout << sum << endl;
+		memset(str, '\0', sizeof(char) * len);
+	}
+	return 0;
+}
+
+int getfeatureval(char a) {
+	return(a == ' ' ? 0 : (a - 'A' + 1));
+}
